@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Registro de Chamados</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.gritter/js/jquery.gritter.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+        <script type="text/javascript" 
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+        <script type="text/javascript" src="js/controller/app.js"></script>
+        <script type="text/javascript" src="js/paginacao.js"></script>
+    </head>
+    <body>
+        <div class="page-head">
+            <h4>Usuario Logado: {{autCtrl.usuario.nome}}</h4>
+        </div>
+        <div class="block-flat">
+            <div class="content">
+                <div class="jumbotron">
+                    <form ng-controller="AltUsuarioController as ctrl" class="form-horizontal">
+                        <div class="form-group">
+                            <select id="cliente" ng-model="ctrl.chamado.cliente" class="form-control">
+                                <option>Selecione um cliente</option>
+                            </select>                       
+                        </div>  
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Pessoa Atendida">                          
+                        </div>  
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="dd/mm/aaa">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="hh:mm">    
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Problema relatado pelo cliente" class="form-control"></textarea>    
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Solução para o problema" class="form-control"></textarea>    
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-flat">Salvar Chamado</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="jumbotron">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Empresa</th>
+                            <th>Pessoa Atendida</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Problema</th>
+                            <th>Solução</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
