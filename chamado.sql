@@ -17,7 +17,13 @@ create table chamados (
 	problema varchar(500),
 	solucao varchar(500),
 	primary key (idchamado),
-	foreign key (fk_idusuario) references as usuarios (idusuario)
+	foreign key (fk_idusuario) references usuarios (idusuario)
+);
+
+create table cliente (
+	idcliente int auto_increment,
+	nome varchar(60),
+	primary key (idcliente)
 );
 
 

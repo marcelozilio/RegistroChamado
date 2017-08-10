@@ -1,5 +1,5 @@
-var app = angular.module("Praiastur", ['angularUtils.directives.dirPagination'])
-        .value("urlBase", 'http://praiastur.kinghost.net/Praiastur/webservice/')
+var app = angular.module("RegistroChamado", ['angularUtils.directives.dirPagination'])
+        .value("urlBase", 'http://localhost/RegistroChamado/webresources/ws.php/')
         .controller('LoginController', function ($http, urlBase) {
             var self = this;
             self.usuario = {};
@@ -49,18 +49,86 @@ var app = angular.module("Praiastur", ['angularUtils.directives.dirPagination'])
 
             self.activate();
         })
-        .controller('ChamadoController', function () {
+        .controller('ChamadoController', function ($http, urlBase) {
             var self = this;
+            self.chamado = {};
+            self.chamados = [];
 
             self.activate = function () {
-
+                self.listar();
             };
 
             self.salvar = function () {
-
+                $http({                    
+                    url: urlBase + 'salvar',
+                    data: self.chamado,
+                    method: 'POST',
+                    headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}               
+                }).then(function succesCallBack (response) {                                        
+                    self.listar();
+                    self.limparCampos();
+                    self.msg('success', 'Operação concluída', 'O chamado foi registrado.');
+                }, function errorCallBack (erro) {
+                    self.msg('danger', 'Erro de conexão', 'Não foi possível registrar o chamado.');
+                });
             };
 
             self.listar = function () {
+                $http({
+                    method: 'GET',
+                    url: urlBase + 'getChamados'
+                }).then(function succesCallBack (response) {
+                    self.chamados = response.data;
+                }, function errorCallBack (erro) {
+                    self.msg('danger', 'Erro de conexão', 'Não foi listar os chamados.');
+                });
+            };
+
+            self.alterar = function () {
                 
             };
+
+            self.deletar = function () {
+
+            };
+
+            self.limparCampos = function () {
+                document.getElementById("nomepesat").value = "";
+                document.getElementById("data").value = "";
+                document.getElementById("hora").value = "";
+                document.getElementById("sistema").value = "";
+                document.getElementById("problema").value = "";
+                document.getElementById("solucao").value = "";
+                document.getElementById("cbxCli").selectedIndex = 0;            
+            };
+
+            self.msg = function (classe, titulo, texto) {
+                $.gritter.add({
+                    title: titulo,
+                    text: texto,
+                    class_name: classe
+                });
+            };
+
+            self.activate();
+        })
+        .controller('ClienteController', function ($http, urlBase) {
+            var self = this;
+            self.cliente = {};
+            self.clientes = [];
+
+            self.activate = function () {
+                self.listar();
+            };
+
+            self.listar = function () {
+                $http({
+                    method: 'GET',
+                    url: urlBase + 'getClientes'
+                }).then(function succesCallBack (response) {
+                    self.clientes = response.data;
+                });
+            };           
+
+            self.activate();
         });
