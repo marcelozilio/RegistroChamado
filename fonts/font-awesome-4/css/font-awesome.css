@@ -19,7 +19,6 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #fff;
 }
 /* makes the font 33% larger relative to the icon container */
 .fa-lg {
@@ -186,7 +185,7 @@
   font-size: 2em;
 }
 .fa-inverse {
-  color: #f1f1f1;
+  color: #ffffff;
 }
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
    readers do not read off random characters that represent icons */
@@ -374,7 +373,6 @@
   content: "\f03e";
 }
 .fa-pencil:before {
-  color: #fff;
   content: "\f040";
 }
 .fa-map-marker:before {
