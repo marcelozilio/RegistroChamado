@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Novo Chamado</title>
+        <title>Cadastro de Cliente</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>        
         <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -16,7 +16,7 @@
         <script src="js/paginacao.js"></script>
         <script src="js/controller/app.js"></script>
     </head>
-    <body ng-controller="ChamadoController as ctrl">
+    <body ng-controller="ClienteController as ctrl">
         <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -58,7 +58,7 @@
                                     <a href="#"><i class="fa fa-users"></i><span>Clientes</span></a>
                                     <ul class="sub-menu">
                                         <li><a href="CadastraCliente.html">Cadastro de Clientes</a></li>
-                                        <li><a href="Clientes.html">Tabela de Clientes</a></li>                            
+                                        <li><a href="CLientes.html">Tabela de Clientes</a></li>                            
                                     </ul>
                                 </li>
                                 <!--
@@ -77,40 +77,16 @@
             </div>                    
             <div class="block-flat">
                 <div class="header">                            
-                    <h3>Novo Chamado</h3>
+                    <h3>Cadastro de Cliente</h3>
                 </div>
                 <center>
-                    <div class="content" style="width: 600px;">                       
-                        <form  class="form-horizontal" ng-controller="ClienteController as ctrlCli">                        
-                            <div class="form-group">                            
-                                <select
-                                    ng-model="ctrl.chamado.cliente"
-                                    ng-options="cli.nome as cli.nome for cli in ctrlCli.clientes"
-                                    class="form-control"
-                                    id="cbxCli">
-                                    <option value="">Selecione um Cliente</option>                                    
-                                </select>
-                            </div>  
+                    <div class="content" style="width: 400px;">                       
+                        <form  class="form-horizontal" ng-controller="ClienteController as ctrlCli">
                             <div class="form-group">
-                                <input type="text" ng-model="ctrl.chamado.nomepesat" id="nomepesat" class="form-control" placeholder="Pessoa Atendida">
-                            </div>  
+                                <input type="text" ng-model="ctrl.cliente.nome" id="nome" class="form-control" placeholder="Nome do Cliente">
+                            </div>                              
                             <div class="form-group">
-                                <input type="text" ng-model="ctrl.chamado.data" id="data" class="form-control" placeholder="dd/mm/aaa">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" ng-model="ctrl.chamado.hora" id="hora" class="form-control" placeholder="hh:mm">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" ng-model="ctrl.chamado.sistema" id="sistema" class="form-control" placeholder="Sistema">
-                            </div>
-                            <div class="form-group">
-                                <textarea ng-model="ctrl.chamado.problema" id="problema" placeholder="Problema relatado pelo cliente" class="form-control"></textarea>    
-                            </div>
-                            <div class="form-group">
-                                <textarea ng-model="ctrl.chamado.solucao" id="solucao" placeholder="Solução para o problema" class="form-control"></textarea>    
-                            </div>
-                            <div class="form-group">
-                                <button ng-click="ctrl.salvar()" class="btn btn-primary btn-flat">Salvar Chamado</button>
+                                <button ng-click="ctrl.salvar()" style="width: 100px" class="btn btn-primary btn-flat">Salvar</button>
                             </div>
                         </form>                         
                     </div>

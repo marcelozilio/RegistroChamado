@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html ng-app="RegistroChamado" lang="pt-br" >
+<html lang="pt-br" ng-app="RegistroChamado" ng-controller="AutenticacaoController as autCtrl" >
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Início</title>
+        <title>Chamados Realizados</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>        
         <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -28,9 +28,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right user-nav">
                         <li class="dropdown profile_menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{autCtrl.usuario.nome}} <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Olá, {{autCtrl.usuario.login}} <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Configurações</a></li>                                                                
+                                <li><a href="Configuracoes.html">Configurações</a></li>                                                                
                                 <li class="divider"></li>
                                 <li><a href="#" ng-click="autCtrl.deslogar()">Sair</a></li>
                             </ul>
@@ -47,7 +47,8 @@
                     <div class="menu-space">
                         <div class="content">
                             <ul class="cl-vnavigation">
-                                <li><a href="Chamados.html"><i class="fa fa-home"></i><span>Início</span></a></li>                     <li>
+                                <li><a href="Chamados.html"><i class="fa fa-home"></i><span>Início</span></a></li>
+                                <li>
                                     <a href="#"><i class="fa fa-headphones"></i><span>Chamados</span></a>
                                     <ul class="sub-menu">
                                         <li><a href="NovoChamado.html">Novo Chamado</a></li>
@@ -57,10 +58,11 @@
                                 <li>
                                     <a href="#"><i class="fa fa-users"></i><span>Clientes</span></a>
                                     <ul class="sub-menu">
-                                        <li><a href="#">Cadastro de Clientes</a></li>
-                                        <li><a href="#">Tabela de Clientes</a></li>                            
+                                        <li><a href="CadastraCliente.html">Cadastro de Clientes</a></li>
+                                        <li><a href="Clientes.html">Tabela de Clientes</a></li>                            
                                     </ul>
                                 </li>
+                                <!--
                                 <li>
                                     <a href="#"><i class="fa fa-user"></i><span>Usuários</span></a>
                                     <ul class="sub-menu">
@@ -68,6 +70,7 @@
                                         <li><a href="#">Tabela de Usuários</a></li>
                                     </ul>
                                 </li>
+                                -->
                             </ul>
                         </div>
                     </div>                    
@@ -91,9 +94,9 @@
                                     <th>Sistema</th>
                                     <th>Problema</th>
                                     <th>Solução</th>
-                                    <th>Ações</th>
+                                    <th style="width: 110px">Ações</th>
                                 </tr>
-                                <tr dir-paginate="c in ctrl.chamados | filter:pesquisa | itemsPerPage:5">
+                                <tr dir-paginate="c in ctrl.chamados | filter:pesquisa | itemsPerPage:10">
                                     <td>{{c.idchamado}}</td>
                                     <td>{{c.cliente}}</td>
                                     <td>{{c.nomepesat}}</td>
@@ -103,10 +106,10 @@
                                     <td>{{c.problema}}</td>
                                     <td>{{c.solucao}}</td>
                                     <td>                                                    
-                                        <a class="btn btn-primary btn-xs" ng-click="ctrl.alterar(u)">
+                                        <a class="btn btn-primary btn-xs" ng-click="ctrl.alterar(c)">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-xs" ng-click="ctrl.deletar(u)">
+                                        <a class="btn btn-danger btn-xs" ng-click="ctrl.deletar(c)">
                                             <i class="fa fa-times"></i>
                                         </a>
                                     </td>                            

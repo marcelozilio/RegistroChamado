@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="RegistroChamado">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Login</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>        
+        <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="js/jquery.gritter/css/jquery.gritter.css" />
+        <link rel="stylesheet" href="fonts/font-awesome-4/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="js/jquery.nanoscroller/nanoscroller.css" />
+        <link href="css/style.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+        <script src="js/paginacao.js"></script>
+        <script src="js/controller/app.js"></script>
+    </head>
+    <body class="texture" ng-controller="LoginController as ctrl">
+        <div id="cl-wrapper" class="login-container">
+            <div class="middle-login">
+                <div class="block-flat">
+                    <div class="header">
+                        <h3 class="text-center">Registro de Chamados</h3>
+                    </div>
+                    <div>
+                        <form style="margin-bottom: 0px !important;" class="form-horizontal">
+                            <div class="content">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            <input id="login" ng-model="ctrl.usuario.login" type="text" placeholder="Login" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                            <input id="senha" ng-model="ctrl.usuario.senha" type="password" placeholder="Senha" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="foot">                            
+                                <button data-dismiss="modal" ng-click="ctrl.logar()" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                        <div ng-show="ctrl.msgErro !== null" class="alert alert-danger" style="margin-left:25px;margin-right:25px;">
+                            <span>{{ctrl.msgErro}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center out-links"><a href="#">© 2017 Nome da Empresa</a></div>
+            </div>
+        </div>
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
+        <script type="text/javascript" src="js/jquery.gritter/js/jquery.gritter.js"></script>
+        <script type="text/javascript" src="js/behaviour/general.js"></script>      
+        <script type="text/javascript">
+        $(document).ready(function () {
+            App.init();
+        });
+        </script>
+        <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+    </body>
+</html>

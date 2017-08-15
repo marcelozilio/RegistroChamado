@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br" ng-app="RegistroChamado" ng-controller="AutenticacaoController as autCtrl">
+<html ng-app="RegistroChamado" lang="pt-br" ng-controller="AutenticacaoController as autCtrl" >
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Novo Chamado</title>
+        <title>Altera Chamado</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>        
         <link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -16,7 +16,7 @@
         <script src="js/paginacao.js"></script>
         <script src="js/controller/app.js"></script>
     </head>
-    <body ng-controller="ChamadoController as ctrl">
+    <body ng-controller="AltChamadoController as ctrl">
         <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -28,7 +28,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right user-nav">
                         <li class="dropdown profile_menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Olá, {{autCtrl.usuario[0].login}} <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Olá, {{autCtrl.usuario.nome}} <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Configuracoes.html">Configurações</a></li>                                                                
                                 <li class="divider"></li>
@@ -57,19 +57,17 @@
                                 <li>
                                     <a href="#"><i class="fa fa-users"></i><span>Clientes</span></a>
                                     <ul class="sub-menu">
-                                        <li><a href="CadastraCliente.html">Cadastro de Clientes</a></li>
-                                        <li><a href="Clientes.html">Tabela de Clientes</a></li>                            
+                                        <li><a href="#">Cadastro de Clientes</a></li>
+                                        <li><a href="#">Tabela de Clientes</a></li>                            
                                     </ul>
                                 </li>
-                                <!--
                                 <li>
                                     <a href="#"><i class="fa fa-user"></i><span>Usuários</span></a>
                                     <ul class="sub-menu">
-                                        <li><a href="#">Cadastrar Usuário</a></li>
-                                        <li><a href="#">Tabela de Usuários</a></li>
+                                        <li><a href="CadastraCliente.html">Cadastrar Usuário</a></li>
+                                        <li><a href="Clientes.html">Tabela de Usuários</a></li>
                                     </ul>
                                 </li>
-                                -->
                             </ul>
                         </div>
                     </div>                    
@@ -77,11 +75,14 @@
             </div>                    
             <div class="block-flat">
                 <div class="header">                            
-                    <h3>Novo Chamado</h3>
+                    <h3>Alterar Chamado</h3>
                 </div>
                 <center>
                     <div class="content" style="width: 600px;">                       
-                        <form  class="form-horizontal" ng-controller="ClienteController as ctrlCli">                        
+                        <form  class="form-horizontal" ng-controller="ClienteController as ctrlCli">
+                            <div class="form-group">
+                                <input type="text" ng-model="ctrl.chamado.idchamado" id="idchamado" class="form-control" placeholder="ID Chamado" disabled="disabled">
+                            </div>                      
                             <div class="form-group">                            
                                 <select
                                     ng-model="ctrl.chamado.cliente"

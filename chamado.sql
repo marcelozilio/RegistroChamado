@@ -7,8 +7,7 @@ create table usuarios (
 );
 
 create table chamados (
-	idchamado int auto_increment,
-	fk_idusuario int,
+	idchamado int auto_increment,	
 	cliente varchar(60),
 	nomepesat varchar(60),
 	data varchar(10),
@@ -16,11 +15,10 @@ create table chamados (
 	sistema varchar(60),
 	problema varchar(500),
 	solucao varchar(500),
-	primary key (idchamado),
-	foreign key (fk_idusuario) references usuarios (idusuario)
+	primary key (idchamado)
 );
 
-create table cliente (
+create table clientes (
 	idcliente int auto_increment,
 	nome varchar(60),
 	primary key (idcliente)
