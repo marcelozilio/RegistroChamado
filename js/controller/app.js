@@ -88,7 +88,111 @@ var app = angular.module("RegistroChamado", ['angularUtils.directives.dirPaginat
         })
         .controller('ChamadoController', function ($http, urlBase) {
             var self = this;
-            self.chamado = {};
+            self.chamado = {};           
+
+            self.activate = function () {
+                self.chamado.data = self.parseDateBr(new Date());
+                self.chamado.hora = self.getHora();                
+                document.getElementById("data").value = self.chamado.data;
+                document.getElementById("hora").value = self.chamado.hora;
+            };
+
+            /*dd/MM/aaaa*/
+            self.parseDateBr = function (date) {
+                var dateFormated = '';
+
+                if (date.getDate() < 10) {
+                    dateFormated += '0' + date.getDate() + '/';
+                } else {
+                    dateFormated += date.getDate() + '/';
+                }
+
+                if ((date.getMonth() + 1) < 10) {
+                    dateFormated += '0' + (date.getMonth() + 1) + '/';
+                } else {
+                    dateFormated += date.getMonth() + '/';
+                }                    
+
+                dateFormated += date.getFullYear();                            
+
+                return dateFormated;
+            };
+
+            /*yyyy-MM-dd*/
+            self.parseDateISO = function (date) {
+                var dateFormated = '';
+                dateFormated += date.getFullYear() + '-';
+                if ((date.getMonth() + 1) < 10) {
+                    dateFormated += '0' + (date.getMonth() + 1) + '-';
+                } else {
+                    dateFormated += date.getMonth();
+                }
+
+                if (date.getDate() < 10) {
+                    dateFormated += '0' + date.getDate();
+                } else {
+                    dateFormated += date.getDate();
+                }
+
+                return dateFormated;
+            };
+
+            self.getHora = function () {
+                var hour = new Date();
+                var horaMin = '';                
+
+                if (hour.getHours() < 10) {
+                    horaMin = '0' + hour.getHours();
+                } else {
+                    horaMin = hour.getHours();
+                     
+                }
+
+                if (hour.getMinutes() < 10) {
+                    horaMin += ':0' + hour.getMinutes();
+                } else {
+                    horaMin += ':' + hour.getMinutes();                
+                }
+
+                return horaMin;
+            };
+
+            self.salvar = function () {
+                $http({                    
+                    url: urlBase + 'chamado/salvar',
+                    data: self.chamado,
+                    method: 'POST',
+                    headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}               
+                }).then(function succesCallBack (response) {                                                           
+                    self.limparCampos();
+                    self.msg('success', 'Operação concluída', 'O chamado foi registrado.');
+                }, function errorCallBack (erro) {
+                    self.msg('danger', 'Erro de conexão', 'Não foi possível registrar o chamado.');
+                });
+            };           
+
+            self.limparCampos = function () {
+                document.getElementById("nomepesat").value = "";
+                document.getElementById("data").value = "";
+                document.getElementById("hora").value = "";
+                document.getElementById("sistema").value = "";
+                document.getElementById("problema").value = "";
+                document.getElementById("solucao").value = "";
+                document.getElementById("cbxCli").selectedIndex = 0;            
+            };
+
+            self.msg = function (classe, titulo, texto) {
+                $.gritter.add({
+                    title: titulo,
+                    text: texto,
+                    class_name: classe
+                });
+            };
+
+            self.activate();
+        })
+        .controller('ListChamadoController', function ($http, urlBase) {
+            var self = this;            
             self.chamados = [];
 
             self.activate = function () {
@@ -102,22 +206,7 @@ var app = angular.module("RegistroChamado", ['angularUtils.directives.dirPaginat
                     window.sessionStorage.removeItem('msgAltUsr');
                 }
                 self.listar();
-            };
-
-            self.salvar = function () {
-                $http({                    
-                    url: urlBase + 'chamado/salvar',
-                    data: self.chamado,
-                    method: 'POST',
-                    headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}               
-                }).then(function succesCallBack (response) {                                        
-                    self.listar();
-                    self.limparCampos();
-                    self.msg('success', 'Operação concluída', 'O chamado foi registrado.');
-                }, function errorCallBack (erro) {
-                    self.msg('danger', 'Erro de conexão', 'Não foi possível registrar o chamado.');
-                });
-            };
+            };           
 
             self.listar = function () {
                 $http({
@@ -146,16 +235,7 @@ var app = angular.module("RegistroChamado", ['angularUtils.directives.dirPaginat
                     self.msg('danger', 'Erro de conexão', 'Não foi possivel deletar o chamado.\n' + erro);
                 });
             };
-
-            self.limparCampos = function () {
-                document.getElementById("nomepesat").value = "";
-                document.getElementById("data").value = "";
-                document.getElementById("hora").value = "";
-                document.getElementById("sistema").value = "";
-                document.getElementById("problema").value = "";
-                document.getElementById("solucao").value = "";
-                document.getElementById("cbxCli").selectedIndex = 0;            
-            };
+          
 
             self.msg = function (classe, titulo, texto) {
                 $.gritter.add({

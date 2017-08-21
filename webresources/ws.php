@@ -115,7 +115,7 @@
 	$app->group('/cliente',function() use ($app){
 
 		$app->get('/get', function(){
-			$stat = getConn()->query("select * from clientes");
+			$stat = getConn()->query("select * from clientes ORDER BY nome ASC");
 			$array = array();
 			$array = $stat->fetchAll(PDO::FETCH_OBJ);
 			//encerramento da conexão
